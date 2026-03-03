@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+
+
+    <title>{% block title %}DH 24{% endblock %}</title>
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'apple-touch-icon-precomposed.png' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;500&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}"> <!-- Для анимаций -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/1.1.0/cart.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/1.1.0/rivets-cart.min.js"></script>
+    <script src="{% static 'js/aos.min.js' %}" defer></script>
+    <script src="{% static 'js/utils.js' %}" defer></script>
+    <script src="{% static 'js/order.js' %}" defer></script>
+    <script src="{% static 'js/cart.js' %}" defer></script>
+    <script src="{% static 'js/filters.js' %}"></script>
+    <script src="{% static 'js/animations.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"></script>
+
+
+</head>
+<body>
+
+<!--old shablon header - full-work-->
+<!--<div data-aos="fade-up">-->
+<div class="header" style="
+    background-image: url('/static/image/fire3.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;">
+
+    <!--    <div class="logo">-->
+    <!--        <img src="/static/image/logo.png" alt="Texas Burger Logo">-->
+    <!--    </div>-->
+    <div data-aos="fade-up" class="greeting">
+
+        <h2>DONER HOUSE24</h2>
+        <h5>Послуги доставки 🛵 та попереднього замовлення 🕒</h5>
+    </div>
+
+</div>
+
+<!--    dobavish eto esli dlya usera-->
+<!--    <div class="header-right">-->
+<!--        <a href="{% url 'cart_view' %}" id="header-cart" class="cart-icon hidden">-->
+<!--            🛒 <span id="cart-count">{{ cart_count|default:0 }}</span>-->
+<!--        </a>-->
+
+<!--        {% if user.is_authenticated %}-->
+<!--        <span class="welcome">👤 {{ user.username }}</span>-->
+<!--        {% endif %}-->
+<!--    </div>-->
+
+<!--    za buttons na headere WORKS111-->
+<!--    <div class="header-wrapper">-->
+<!--        <div class="header-buttons">-->
+
+<!--            <h5><a href="{% url 'product_list' %}">Dastavka</a></h5>-->
+<!--            <h5><a href="{% url 'category_list' %}">Kategoriya</a></h5>-->
+
+<!--            <h5><a href="{% url 'cart_view' %}" class="button">🛒 Karzinka</a></h5>-->
+
+
+<!--            <div class="user-section">-->
+<!--                {% if user.is_authenticated %}-->
+<!--                <div class="welcome-message">Welcome:{{ user.username }}!</div>-->
+
+<!--                <form method="post" action="{% url 'logout' %}">-->
+<!--                    {% csrf_token %}-->
+<!--                    <button type="submit" class="button">Вихід</button>-->
+<!--                </form>-->
+<!--                {% else %}-->
+<!--                &lt;!&ndash;                <a href="{% url 'login' %}" class="button">Вхід</a>&ndash;&gt;-->
+<!--                &lt;!&ndash;                <a href="{% url 'signup' %}" class="button">Sign-up</a>&ndash;&gt;-->
+<!--                {% endif %}-->
+
+<!--            </div>-->
+
+
+<!--        </div>-->
+
+<!--    </div>-->
+
+</div>
+
+<div class="category-scroll">
+    <a href="{% url 'product_list' %}" class="category-pill">
+        Загальне меню
+    </a>
+    {% for cat in all_categories %}
+    <a href="{% url 'category_detail' cat.id %}"
+       class="category-pill">
+        {{ cat.name }}
+    </a>
+    {% endfor %}
+</div>
+
+
+<div>
+    <a href="{% url 'cart_view' %}"
+       id="floating-cart"
+       class="floating-cart hidden">
+        🛒 <span id="cart-count">{{ cart_count|default:0 }}</span>
+    </a>
+</div>
+
+<!--</header>-->
+<div class="container">
+    <main>
+        {% block content %}
+        <!-- Здесь будет контент дочерних шаблонов -->
+
+        {% endblock %}
+    </main>
+
+</div>
+
+
+<footer class="footer" style="background-image: url('/static/image/fire2.png');
+background-size: cover; background-position: center; background-repeat: no-repeat;">
+
+    <div>
+
+        <!-- Левая часть: Социальные сети и контакты -->
+        <div class="dev-note">
+            <h5>Наші контакти</h5>
+            <h6>Telefon: +380 00 000 00 00</h6>
+            <h6>Email: dh24@gmail.com</h6>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/texasburger_urgench?igsh=MXUxYjRrcGU0bjA4NA==" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://telegram.org" target="_blank"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+
+        <div>
+            <h5>Адреси наших філій</h5>
+            <select id="branch-select">
+                <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d175846.98508509411!2d30.612339857600713!3d46.476249482937824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c625c496362995%3A0x19210ffcce2eb653!2sDoner%20House%2024!5e0!3m2!1sen!2scz!4v1772313756426!5m2!1sen!2scz">
+                    Filial 1 – вул. Академіка Заболотного, 39а
+                </option>
+
+                <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d175896.13277159195!2d30.457191467285163!3d46.461038542001724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c6337f4644272d%3A0x18c2f8bf686038fa!2sDoner%20House%2024!5e0!3m2!1sen!2scz!4v1772313945023!5m2!1sen!2scz">
+                    Filial 2 – вул. Канатна, 101
+                </option>
+            </select>
+        </div>
+
+        <div style="margin-top:15px;">
+            <iframe
+                    id="map-frame"
+                    width="90%"
+                    height="200"
+                    style="border:0;"
+                    loading="lazy"
+                    allowfullscreen>
+            </iframe>
+        </div>
+        <script>
+            const select = document.getElementById("branch-select");
+            const mapFrame = document.getElementById("map-frame");
+
+            // карта по умолчанию
+            mapFrame.src = select.value;
+
+            select.addEventListener("change", function() {
+                mapFrame.src = this.value;
+            });
+        </script>
+
+
+    </div>
+
+    <h6 class="dev-note">
+        Для вашого бізнесу індивідуальний та функціональний Web-site!
+        всього за $99! Залишилося-7! до 31.03! Зв'яжіться з нами:
+        <a href="https://t.me/Jamoladdin23" target="_blank">Telegram</a>
+    </h6>
+    <p class="copyright">© All rights reserved 2026</p>
+
+</footer>
+
+</body>
+</html>
