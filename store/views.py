@@ -15,7 +15,7 @@ class CustomLoginView(LoginView):
     template_name = 'store/login.html'
 # change IDs for showing selecter popular products
 def home(request):
-    products = Product.objects.filter(id__in=[42, 43, 38, 20, 17, 19], is_available=True)
+    products = Product.objects.filter(id__in=[40, 39, 41, 36, 33, 19], is_available=True)
     # products = Product.objects.filter(is_available=True)[:6]  # популярные
     return render(request, "store/home.html", {"products": products})
 
