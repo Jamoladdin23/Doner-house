@@ -6,3 +6,6 @@ venv/
 node_modules/
 *.log
 .idea/
+.DS_Store
+media.zip
+dump.sql
